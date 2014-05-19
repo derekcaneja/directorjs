@@ -11,7 +11,7 @@ try {
 }
 
 module.exports.initialize = function(callback) {
-	var nodeCMS = new NodeCMS(config);
+	var director = new Director(config);
 
-	callback(null, nodeCMS);
+	callback(null, director);
 }

@@ -1,15 +1,39 @@
 {
-	"name"    	  : "node-cms",
-	"version" 	  : "0.0.1",
-	"description" : "CMS built off of node.",
+	"name"    	  : "directorjs",
+	"version" 	  : "0.0.2",
+	"description" : "Administration panel built off of node.  It can be easily integrated into any pre-existing site.",
+	"author": {
+        "name": "Derek Caneja"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/derekcaneja/directorjs.git"
+    },
+    "bugs": {
+        "url": "https://github.com/derekcaneja/directorjs/issues"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/derekcaneja/directorjs.git/blob/master/LICENSE-MIT"
+        }
+    ],
 	"main": "index.js",
-	"repository": {
-		"type": "git"
-	},
+	"engines": {
+        "node": ">= 0.8.0"
+    },
+    "keywords": [
+        "directorjs",
+        "administration",
+        "admin",
+        "cms"
+    ],
 	"dependencies": {
 		"underscore" : "*",
 		"mongoose"	 : "*",
 		"handlebars" : "*",
-		"markdown"	 : "*"
+		"markdown"	 : "*",
+		"mysql"		 : "*",
+		"nodemailer" : "*"
 	}
 }
