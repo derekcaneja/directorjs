@@ -1,0 +1,36 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2 class="sub-header">{{site.title}} Settings</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Blog Title</th>
+                    <th>URL Schema</th>
+                    <th>Database</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="input-block-level title-input"      type="text" placeholder="My Blog"      value="{{site.title}}"/></td>
+                    <td><input class="input-block-level url-schema-input" type="text" placeholder="/posts/:slug" value="{{site.urlSchema}}"/></td>
+                    <td><input class="input-block-level host-input"       type="text" placeholder="Host URL"     value="{{site.database.host}}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><input class="input-block-level user-input" type="text" placeholder="Username" value="{{site.database.user}}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><input class="input-block-level pass-input" type="password" placeholder="Password" value="{{site.database.pass}}"/></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td><button class="save-settings" style="float:right;">Save Settings</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

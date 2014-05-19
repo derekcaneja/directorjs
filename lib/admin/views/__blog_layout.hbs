@@ -1,0 +1,310 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="author"      content="">
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+        
+        <title>{{config.title}}</title>
+    
+        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="/css/style.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/jasny-bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            body {
+                padding-top: 50px;
+            }
+
+            .form-signin {
+                max-width: 300px;
+                padding: 19px 29px 29px;
+                margin: 0 auto 20px;
+                background-color: #fff;
+                border: 1px solid #e5e5e5;
+                -webkit-border-radius: 5px;
+                   -moz-border-radius: 5px;
+                        border-radius: 5px;
+                -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                        box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            }
+
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+          
+            .form-signin input[type="text"],
+            .form-signin input[type="password"] {
+                font-size: 16px;
+                height: auto;
+                margin-bottom: 15px;
+                padding: 7px 9px;
+            }
+
+            .sub-header {
+                padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
+            }
+
+
+            .main {
+                padding: 20px;
+            }
+            @media (min-width: 768px) {
+                .main {
+                    padding-right: 40px;
+                    padding-left: 40px;
+                }
+            }
+            .main .page-header {
+                margin-top: 0;
+            }
+
+            .placeholders {
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .placeholders h4 {
+                margin-bottom: 0;
+            }
+            .placeholder {
+                margin-bottom: 20px;
+            }
+            .placeholder img {
+                display: inline-block;
+                border-radius: 50%;
+            }
+
+            .sidebar {
+                display: none;
+            }
+            @media (min-width: 768px) {
+                .sidebar {
+                    position: fixed;
+                    top: 51px;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 1000;
+                    display: block;
+                    padding: 20px;
+                    overflow-x: hidden;
+                    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+                    background-color: #f5f5f5;
+                    border-right: 1px solid #eee;
+                }
+            }
+
+            .nav-sidebar {
+                margin-right: -21px; /* 20px padding + 1px border */
+                margin-bottom: 20px;
+                margin-left: -20px;
+            }
+            .nav-sidebar > li > a {
+                padding-right: 20px;
+                padding-left: 20px;
+            }
+            .nav-sidebar > .active > a {
+                color: #fff;
+                background-color: #428bca;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Director JS</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/sites/{{site._id}}/settings" style="height:50px !important; padding-top: 15px">Settings</a></li>
+                    <li><a href="/attempt_signout" style="height:50px !important; padding-top: 15px">Sign Out</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    <h5>Pages</h5>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="/sites/{{site._id}}/pages">View All</a></li>
+                        <li><a href="/sites/{{site._id}}/new_page">+ Add New</a></li>
+                    </ul>
+
+                    <h5>Posts</h5>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="/sites/{{site._id}}/posts">View All</a></li>
+                        <li><a href="/sites/{{site._id}}/new_post">+ Add New</a></li>
+                    </ul>
+
+                    <h5>Authors</h5>
+                    <ul class="nav nav-sidebar">
+                        <li><a href="/sites/{{site._id}}/authors">View All</a></li>
+                        <li><a href="/sites/{{site._id}}/new_author">+ Add New</a></li>
+                    </ul>
+                </div>
+
+                {{{body}}}
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="/js/jasny-bootstrap.min.js"></script>
+        <script>
+            $('.save-post').click(function() {
+                var params = {
+                    id        : $('.id').val(),
+                    slug      : $('.slug-input').val(),
+                    title     : $('.title-input').val(),
+                    content   : $('.content-input').val(),
+                    author    : $('.author-input').val(),
+                    tags      : $('.tags-input').val(),
+                    thumb     : $('.thumb-input img').attr('src'),
+                    image     : $('.image-input img').attr('src')
+                };
+
+                $.ajax({
+                    url  : '/attempt_save_post',
+                    data : params,
+                    type :'POST',
+                    success: function(data) {
+                        if(data) window.location = '/sites/{{site._id}}/posts';
+                    }
+                });
+            });
+
+            $('.save-author').click(function() {
+                var params = {
+                    id           : $('.id').val(),
+                    name         : $('.name-input').val(),
+                    email        : $('.email-input').val(),
+                    user         : $('.user-input').val(),
+                    image        : $('.image-input img').attr('src'),
+                    social_media : socialMediaEntries
+                };
+
+                $.ajax({
+                    url  : '/attempt_save_author',
+                    data : params,
+                    type :'POST',
+                    success: function(data) {
+                        if(data) window.location = '/sites/{{site._id}}/authors';
+                    }
+                });
+            });
+
+            $('.add-social-media').click(function() {
+                var type    = $('.type-input').val().toLowerCase();
+                var url     = $('.url-input').val();
+                var display = $('.display-input').val();
+
+                $('.social-media-body').prepend('<tr><td>' + type + '</td><td>' + url + '</td><td>' + display + '</td></tr>');
+
+                socialMediaEntries.push({ type: type, url: url, display: display });
+            });
+
+            $('.save-settings').click(function() {
+                var database = { 
+                    host: $('.host-input').val(), 
+                    user: $('.user-input').val(), 
+                    pass: $('.pass-input').val() 
+                };
+
+                $.ajax({
+                    url  : '/save_settings',
+                    data : { title: $('.title-input').val(), urlSchema: $('.url-schema-input').val(), database: database },
+                    type :'POST',
+                    success: function(data) {
+                        if(data) window.location = '/sites/{{site._id}}/settings';
+                    }
+                });
+            });
+
+            $('.save-page').click(function() {
+                var headerInputs   = {};
+                var templateInputs = {};
+
+                $('.header-properties-input').each(function() {
+                    headerInputs[$(this).data('property')] = $(this).val();
+                });
+
+                $('.template-properties-input').each(function() {
+                    templateInputs[$(this).data('property')] = $(this).val();
+                });
+
+                var params = {
+                    id          : $('.id').val(),
+                    title       : $('.title-input').val(),
+                    slug        : $('.slug-input').val(),
+                    header      : $('.header-input').val(),
+                    template    : $('.template-input').val(),
+                    header_data : headerInputs,
+                    data        : templateInputs
+                };
+
+                $.ajax({
+                    url  : '/attempt_save_page',
+                    data : params,
+                    type :'POST',
+                    success: function(data) {
+                        if(data) window.location = '/sites/{{site._id}}/pages';
+                    }
+                });
+            });
+
+            $('.header-input').change(function() {
+                $.ajax({
+                    url  : '/get_template_properties',
+                    data : { template: $(this).val() },
+                    type :'GET',
+                    success: function(data) {
+                        var header = '';
+                        var inputs = '';
+                        
+                        for(var i = 0; i < data.properties.length; i++) {
+                            header += '<th>' + data.properties[i].property + ' <span style="color:#AAAAAA">*' + data.properties[i].type + '</span></th>';
+                            inputs += '<td><input class="input-block-level header-properties-input"  type="text" data-property="' + data.properties[i].property + '"/></td>'
+                        }
+
+                        if(header.length == 0) header = '<th>No properties available</th>';
+
+                        $('.header-properties-headers').html('').append(header);
+                        $('.header-properties-inputs').html('').append(inputs);
+                    }
+                });
+            });
+
+            $('.template-input').change(function() {
+                $.ajax({
+                    url  : '/get_template_properties',
+                    data : { template: $(this).val() },
+                    type :'GET',
+                    success: function(data) {
+                        var header = '';
+                        var inputs = '';
+                        
+                        for(var i = 0; i < data.properties.length; i++) {
+                            header += '<th>' + data.properties[i].property + ' <span style="color:#AAAAAA">*' + data.properties[i].type + '</span></th>';
+                            inputs += '<td><input class="input-block-level header-properties-input"  type="text" data-property="' + data.properties[i].property + '"/></td>'
+                        }
+
+                        if(header.length == 0) header = '<th>No properties available</th>';
+
+                        $('.template-properties-headers').html('').append(header);
+                        $('.template-properties-inputs').html('').append(inputs);
+                    }
+                });
+            });
+
+            if($('.thumb-input img').length == 0) $('.thumb-input').html('<img src="{{post.thumb}}" style="max-height: 140px;">'); 
+            if($('.image-input img').length == 0) $('.image-input').html('<img src="{{post.image}}" style="max-height: 140px;">'); 
+        </script>
+    </body>
+</html>

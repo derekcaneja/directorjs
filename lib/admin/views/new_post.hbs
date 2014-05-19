@@ -1,0 +1,83 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{#if post}}Edit{{else}}New{{/if}} Post</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>General Information</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input class="input-block-level slug-input" type="text" placeholder="Slug" value="{{post.slug}}" />
+                                <br>
+                                <br>
+                                <input class="input-block-level title-input" type="text" placeholder="Title" value="{{post.title}}" />
+                                <br>
+                                <br>
+                                <input class="input-block-level tags-input" type="text" placeholder="Tags" value="{{post.tags}}" />
+                                <br>
+                                <br>
+                                <select class="input-block-level author-input">
+                                    {{#each authors}}
+                                        <option {{is_selected name ../post.author}}>{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td width="50%">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; {{#if post.thumb}}display:none{{/if}}">
+                                        <img data-src="holder.js/100%x100%">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail thumb-input" style="max-width: 200px; max-height: 150px; {{#if post.thumb}}display:inline-block{{/if}}"><img src="{{post.thumb}}" style="max-height: 140px;"></div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new" style="{{#if post.thumb}}display:none{{/if}}">Select Thumb</span>
+                                            <span class="fileinput-exists" style="{{#if post.thumb}}display:inline-block{{/if}}">Change</span>
+                                            <input type="file" name="...">
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists" style="{{#if post.thumb}}display:inline-block{{/if}}" data-dismiss="fileinput">Remove</a>
+                                    </div>
+                                </div>
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; {{#if post.image}}display:none{{/if}}">
+                                        <img data-src="holder.js/100%x100%">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail image-input" style="max-width: 200px; max-height: 150px; {{#if post.image}}display:inline-block{{/if}}"><img src="{{post.image}}" style="max-height: 140px;"></div>
+                                    <div>
+                                        <span class="btn btn-default btn-file">
+                                            <span class="fileinput-new" style="{{#if post.image}}display:none{{/if}}">Select Image</span>
+                                            <span class="fileinput-exists" style="{{#if post.image}}display:inline-block{{/if}}">Change</span>
+                                            <input type="file" name="...">
+                                        </span>
+                                        <a href="#" class="btn btn-default fileinput-exists" style="{{#if post.image}}display:inline-block{{/if}}" data-dismiss="fileinput">Remove</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><textarea class="content-input" style="width:100%; height:500px;">{{post.content}}</textarea></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="save-post btn btn-primary" style="float:right;">Save Post</button>
+
+        </div>
+    </div>
+</div>
+
+<input class="id" style="display:none;" type="text" value="{{post.id}}"/>

@@ -1,0 +1,73 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{#if post}}Edit{{else}}New{{/if}} Page</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>General Information</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input class="input-block-level title-input" type="text" placeholder="My Blog"      value="{{page.title}}"/></td>
+                            <td><input class="input-block-level slug-input"  type="text" placeholder="/contact_us"  value="{{page.slug}}"/></td>
+                            <td>
+                                <select class="input-block-level header-input">
+                                    {{#each headers}}
+                                        <option {{is_selected name ../page.header}}>{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="input-block-level template-input">
+                                    {{#each templates}}
+                                        <option {{is_selected name ../page.template}}>{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr class="header-properties-headers">
+                            {{#each page.header_data}}
+                                <th>{{property}} <span style="color:#AAAAAA">*{{type}}</span></th>
+                            {{/each}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="header-properties-inputs">
+                            {{#each page.header_data}}
+                                <td><input class="input-block-level template-properties-input"  type="text" data-property="{{property}}" value="{{this}}"/></td>
+                            {{/each}}
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped template-properties">
+                    <thead>
+                        <tr class="template-properties-headers">
+                            {{#each page.data}}
+                                <th>{{property}} <span style="color:#AAAAAA">*{{type}}</span></th>
+                            {{/each}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="template-properties-inputs">
+                            {{#each page.data}}
+                                <td><input class="input-block-level template-properties-input"  type="text" data-property="{{property}}" value="{{this}}"/></td>
+                            {{/each}}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="save-page btn btn-primary" style="float:right;">Save Page</button>
+        </div>
+    </div>
+</div>
+
+<input class="id" style="display:none;" type="text" value="{{page.id}}"/>

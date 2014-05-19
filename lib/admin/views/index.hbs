@@ -1,0 +1,20 @@
+<div class="jumbotron">
+	<div class="container">
+		<h1>Welcome to Director JS</h1>
+		<p>This is the all in one, completely system agnostic, administration panel!</p>
+		<p>
+			<a href='/install' class="btn btn-primary btn-lg" role="button">Add a site »</a>
+			<a class="btn btn-primary btn-lg" role="button">View the docs »</a>
+		</p>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		{{#each sites}}
+			<h2>{{title}}</h2>
+			<a href="http://{{url}}">{{url}}</a>
+			<p><a class="btn btn-default" href="/sites/{{id}}" role="button">View dashboard »</a></p>
+		{{/each}}
+	</div>
+</div>

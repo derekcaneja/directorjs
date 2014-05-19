@@ -1,0 +1,12 @@
+{
+    "title": "Handprint Blog",
+    "url": "http://blog.gethandprint.com",
+    "urlSchema": "/p/:slug",
+    "database": {
+        "host": "dbh74.mongolab.com:27747/heroku_app12028198",
+        "user": "handprint",
+        "pass": "KANSAShandprint3D"
+    },
+    "user": "admin",
+    "pass": "password"
+}

@@ -1,0 +1,71 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="panel panel-primary">
+        <div class="panel-heading">{{#if author}}Edit{{else}}New{{/if}} Author</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>General Information</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                          	<tr>
+                                <td>
+                                    <input class="input-block-level name-input" type="text" placeholder="Full Name" value="{{author.name}}" />
+                                    <br>
+                                    <br>
+                                    <input class="input-block-level email-input" type="text" placeholder="Email" value="{{author.email}}" />
+                                    <br>
+                                    <br>
+                                    <input class="input-block-level user-input" type="text" placeholder="Username" value="{{author.user}}" />
+                                </td>
+                                <td>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px; {{#if author.image}}display:none{{/if}}">
+                                            <img data-src="holder.js/100%x100%">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail image-input" style="max-width: 200px; max-height: 150px; {{#if author.image}}display:inline-block{{/if}}"><img src="{{author.image}}" style="max-height: 140px;"></div>
+                                        <div>
+                                            <span class="btn btn-default btn-file">
+                                                <span class="fileinput-new" style="{{#if author.image}}display:none{{/if}}">Select image</span>
+                                                <span class="fileinput-exists" style="{{#if author.image}}display:inline-block{{/if}}">Change</span>
+                                                <input type="file" name="...">
+                                            </span>
+                                            <a href="#" class="btn btn-default fileinput-exists" style="{{#if author.image}}display:inline-block{{/if}}" data-dismiss="fileinput">Remove</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Social Media Accounts</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="social-media-body">
+                            <tr>
+                                <td><input type="text" class="input-block-level type-input"    style="float:left" placeholder="Account Type" /></td>
+                                <td><input type="text" class="input-block-level url-input"     style="float:left" placeholder="Social Media URL" /></td>
+                                <td><input type="text" class="input-block-level display-input" style="float:left" placeholder="Display Text" /></td>
+                                <td><button class="btn add-social-media" style="float:right">+ Add Link</button></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="save-author btn btn-primary" style="float:right;">Save Author</button>
+        </div>
+    </div>
+</div>
+
+<input class="id" style="display:none;" type="text" value="{{author.id}}"/>
+
+<script>
+    var socialMediaEntries = [];
+</script>
